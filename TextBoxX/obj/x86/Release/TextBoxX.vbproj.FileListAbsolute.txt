@@ -1,0 +1,8 @@
+C:\Users\Alejandro\Documents\Visual Studio 2012\Projects\TextBoxX\TextBoxX\bin\x86\Release\TextBoxX.dll
+C:\Users\Alejandro\Documents\Visual Studio 2012\Projects\TextBoxX\TextBoxX\bin\x86\Release\TextBoxX.pdb
+C:\Users\Alejandro\Documents\Visual Studio 2012\Projects\TextBoxX\TextBoxX\bin\x86\Release\TextBoxX.xml
+C:\Users\Alejandro\Documents\Visual Studio 2012\Projects\TextBoxX\TextBoxX\obj\x86\Release\TextBoxX.Resources.resources
+C:\Users\Alejandro\Documents\Visual Studio 2012\Projects\TextBoxX\TextBoxX\obj\x86\Release\TextBoxX.vbproj.GenerateResource.Cache
+C:\Users\Alejandro\Documents\Visual Studio 2012\Projects\TextBoxX\TextBoxX\obj\x86\Release\TextBoxX.dll
+C:\Users\Alejandro\Documents\Visual Studio 2012\Projects\TextBoxX\TextBoxX\obj\x86\Release\TextBoxX.xml
+C:\Users\Alejandro\Documents\Visual Studio 2012\Projects\TextBoxX\TextBoxX\obj\x86\Release\TextBoxX.pdb
