@@ -19,6 +19,13 @@ TextBoxX
 	<summary>
   A strongly-typed resource class, for looking up localized strings, etc.
 </summary>
+</member><member name="P:TextBoxX.TextBoxX.IsRequired">
+	<summary>
+ Flag indicating if the field is requiered
+ </summary>
+	<value></value>
+	<returns></returns>
+	<remarks></remarks>
 </member>
 </members>
 </doc>

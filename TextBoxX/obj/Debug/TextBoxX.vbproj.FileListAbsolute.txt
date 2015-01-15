@@ -14,3 +14,11 @@ Z:\Dev\TextBoxX\TextBoxX\obj\Debug\TextBoxX.vbproj.GenerateResource.Cache
 Z:\Dev\TextBoxX\TextBoxX\obj\Debug\TextBoxX.dll
 Z:\Dev\TextBoxX\TextBoxX\obj\Debug\TextBoxX.xml
 Z:\Dev\TextBoxX\TextBoxX\obj\Debug\TextBoxX.pdb
+G:\Dev\TextBoxX\TextBoxX\bin\Debug\TextBoxX.dll
+G:\Dev\TextBoxX\TextBoxX\bin\Debug\TextBoxX.pdb
+G:\Dev\TextBoxX\TextBoxX\bin\Debug\TextBoxX.xml
+G:\Dev\TextBoxX\TextBoxX\obj\Debug\TextBoxX.Resources.resources
+G:\Dev\TextBoxX\TextBoxX\obj\Debug\TextBoxX.vbproj.GenerateResource.Cache
+G:\Dev\TextBoxX\TextBoxX\obj\Debug\TextBoxX.dll
+G:\Dev\TextBoxX\TextBoxX\obj\Debug\TextBoxX.xml
+G:\Dev\TextBoxX\TextBoxX\obj\Debug\TextBoxX.pdb

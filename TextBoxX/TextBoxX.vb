@@ -54,6 +54,13 @@ Public Class TextBoxX
         Call SendMessageW(Me.Handle, EM_SETCUEBANNER, 0&, sCue)
     End Sub
 
+    ''' <summary>
+    ''' Flag indicating if the field is requiered
+    ''' </summary>
+    ''' <value></value>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
+    Public Property IsRequired() As Boolean = False
 
     'Set and get the regular expression string to validate with
     Public Property ValidationString() As String
@@ -67,6 +74,9 @@ Public Class TextBoxX
 
     'Check if the text match with the pattern of the regular expression
     Public Function IsValid() As Boolean
+        If (_IsRequired = True) And (Me.Text.Length = 0) Then
+            Return False
+        End If
         If (Me._regexString.Length <> 0) And (Me.Text.Length <> 0) Then     'If the regex string and the content of the text box are not empty
 
             Dim regexObj As Regex = New Regex(_regexString)
