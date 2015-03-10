@@ -13,8 +13,14 @@ Imports System.Text.RegularExpressions
 Public Class TextBoxX
     Inherits System.Windows.Forms.TextBox
 
-    Dim strCurrency As String = ""
-    Dim acceptableKey As Boolean = False
+    Private strCurrency As String = ""
+
+    Private strCurrencyInt As String = "0"
+    Private strCurrencyDec As String = "00"
+    Private boolCurrencyDecFirstPos = True
+
+    Private acceptableKey As Boolean = False
+    Private commaEntered As Boolean = False
 
     Private Const ECM_FIRST As Long = &H1500
     Private Const EM_SETCUEBANNER As Long = (ECM_FIRST + 1)
@@ -46,6 +52,8 @@ Public Class TextBoxX
             If value = True Then
                 Me.TextAlign = HorizontalAlignment.Right
                 OnlyNumbers = False
+            Else
+                Me.TextAlign = HorizontalAlignment.Left
             End If
             _MoneyField = value
         End Set
@@ -142,7 +150,8 @@ Public Class TextBoxX
     ''' <remarks></remarks>
     Public Function GetMoneyValue() As String
         If _MoneyField And Not Text.Length = 0 Then
-            Return Text.Replace("$ ", vbNullString)
+            Dim tmp As String = Text.Replace("$ ", vbNullString)
+            Return tmp.Replace(".", vbNullString)
         Else
             Return Text
         End If
@@ -190,15 +199,20 @@ Public Class TextBoxX
 
     Private Sub TextBoxX_KeyDown(sender As Object, e As KeyEventArgs) Handles Me.KeyDown
 
-        If (e.KeyCode >= Keys.D0 And e.KeyCode <= Keys.D9) OrElse (e.KeyCode >= Keys.NumPad0 And e.KeyCode <= Keys.NumPad9) OrElse e.KeyCode = Keys.Back OrElse e.KeyCode = Keys.Decimal OrElse e.KeyValue = 46 OrElse e.KeyCode = Keys.Oemcomma Then
+        If (e.KeyCode >= Keys.D0 And e.KeyCode <= Keys.D9) OrElse (e.KeyCode >= Keys.NumPad0 And e.KeyCode <= Keys.NumPad9) OrElse e.KeyCode = Keys.Decimal OrElse e.KeyValue = 46 OrElse e.KeyCode = Keys.Oemcomma Then
 
             acceptableKey = True
             If e.KeyCode = 46 And _MoneyField Then
-                strCurrency = ""
                 Me.Clear()
+                commaEntered = False
+                strCurrencyInt = "0"
+                strCurrencyDec = "00"
+                boolCurrencyDecFirstPos = True
+                Text = "00,00"
             End If
 
             If e.KeyCode = Keys.Decimal And _MoneyField Then
+                commaEntered = True
                 e.SuppressKeyPress = True
                 SendKeys.Send(",")
             End If
@@ -223,28 +237,41 @@ Public Class TextBoxX
                 Return
             Else
 
-                If e.KeyChar = Convert.ToChar(Keys.Back) Then
-                    If strCurrency.Length > 0 Then
-                        strCurrency = strCurrency.Substring(0, strCurrency.Length - 1)
+                ' Si se ingreso un numero
+                If IsNumeric(e.KeyChar) Then
+                    ' y la coma no ha sido ingresada
+                    If commaEntered = False Then
+                        ' en el caso que sea el primer digito de los enteros
+                        If strCurrencyInt.Length = 1 And strCurrencyInt = "0" Then
+                            ' Agregar solo un digito
+                            strCurrencyInt = e.KeyChar
+                        Else
+                            ' Si no, agregar el numero al final de los enteros
+                            strCurrencyInt = strCurrencyInt & e.KeyChar
+                        End If
+                    Else
+                        ' Ya se introdujo la coma
+                        If boolCurrencyDecFirstPos Then
+                            strCurrencyDec = e.KeyChar & strCurrencyDec.Substring(1, 1)
+                            boolCurrencyDecFirstPos = False
+                        Else
+                            strCurrencyDec = strCurrencyDec.Substring(0, 1) & e.KeyChar
+                            boolCurrencyDecFirstPos = True
+                        End If
+
                     End If
                 Else
-                    strCurrency = strCurrency & e.KeyChar
-                End If
 
-                If strCurrency.Length = 0 Then
-                    Me.Text = ""
-                ElseIf strCurrency.Length = 1 Then
-                    Me.Text = "0,0" & strCurrency
-                ElseIf strCurrency.Length = 2 Then
-                    Me.Text = "0," & strCurrency
-                ElseIf strCurrency.Length > 2 Then
-                    Me.Text = strCurrency.Substring(0, strCurrency.Length - 2) & "," & strCurrency.Substring(strCurrency.Length - 2)
+                    ' Lo unica tecla que puede llegar aqui es la coma
+                    If e.KeyChar = "," Then
+                        commaEntered = True
+                    End If
                 End If
-                Me.Select(Me.Text.Length, 0)
+                e.Handled = True
+                Me.Text = strCurrencyInt & "," & strCurrencyDec
+                ' FIN DE LA RAMA aceptableKey
             End If
-            e.Handled = True
         End If
-
     End Sub
 
     Private Sub TextBoxX_GotFocus(sender As Object, e As EventArgs) Handles Me.GotFocus
@@ -258,7 +285,7 @@ Public Class TextBoxX
 
     Private Sub TextBoxX_LostFocus(sender As Object, e As EventArgs) Handles Me.LostFocus
         If _MoneyField And Not Text.Length = 0 Then
-            Text = "$ " & Text
+            Text = String.Format("{0:C2}", CDec(Text))
         End If
     End Sub
 End Class
