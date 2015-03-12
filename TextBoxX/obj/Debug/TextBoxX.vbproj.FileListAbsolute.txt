@@ -22,3 +22,11 @@ G:\Dev\TextBoxX\TextBoxX\obj\Debug\TextBoxX.vbproj.GenerateResource.Cache
 G:\Dev\TextBoxX\TextBoxX\obj\Debug\TextBoxX.dll
 G:\Dev\TextBoxX\TextBoxX\obj\Debug\TextBoxX.xml
 G:\Dev\TextBoxX\TextBoxX\obj\Debug\TextBoxX.pdb
+C:\Users\Alejandro\Google Drive\Dev\TextBoxX\TextBoxX\bin\Debug\TextBoxX.dll
+C:\Users\Alejandro\Google Drive\Dev\TextBoxX\TextBoxX\bin\Debug\TextBoxX.pdb
+C:\Users\Alejandro\Google Drive\Dev\TextBoxX\TextBoxX\bin\Debug\TextBoxX.xml
+C:\Users\Alejandro\Google Drive\Dev\TextBoxX\TextBoxX\obj\Debug\TextBoxX.Resources.resources
+C:\Users\Alejandro\Google Drive\Dev\TextBoxX\TextBoxX\obj\Debug\TextBoxX.vbproj.GenerateResource.Cache
+C:\Users\Alejandro\Google Drive\Dev\TextBoxX\TextBoxX\obj\Debug\TextBoxX.dll
+C:\Users\Alejandro\Google Drive\Dev\TextBoxX\TextBoxX\obj\Debug\TextBoxX.xml
+C:\Users\Alejandro\Google Drive\Dev\TextBoxX\TextBoxX\obj\Debug\TextBoxX.pdb

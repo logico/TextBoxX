@@ -1,7 +1,4 @@
-﻿' Money field code by user shavinder on CodeProject
-' http://www.codeproject.com/Tips/311959/Format-a-textbox-for-currency-input-VB-NET
-
-Option Explicit On
+﻿Option Explicit On
 
 Imports System
 Imports System.Drawing
@@ -162,10 +159,8 @@ Public Class TextBoxX
             Case WM_PAINT
                 MyBase.WndProc(m)
                 OnPaint()
-                ' break
             Case Else
                 MyBase.WndProc(m)
-                ' break
         End Select
     End Sub
 
@@ -199,7 +194,11 @@ Public Class TextBoxX
 
     Private Sub TextBoxX_KeyDown(sender As Object, e As KeyEventArgs) Handles Me.KeyDown
 
-        If (e.KeyCode >= Keys.D0 And e.KeyCode <= Keys.D9) OrElse (e.KeyCode >= Keys.NumPad0 And e.KeyCode <= Keys.NumPad9) OrElse e.KeyCode = Keys.Decimal OrElse e.KeyValue = 46 OrElse e.KeyCode = Keys.Oemcomma Then
+        If (e.KeyCode >= Keys.D0 And e.KeyCode <= Keys.D9) _
+            OrElse (e.KeyCode >= Keys.NumPad0 And e.KeyCode <= Keys.NumPad9) _
+            OrElse e.KeyCode = Keys.Decimal _
+            OrElse e.KeyValue = 46 _
+            OrElse e.KeyCode = Keys.Oemcomma Then
 
             acceptableKey = True
             If e.KeyCode = 46 And _MoneyField Then
@@ -237,20 +236,20 @@ Public Class TextBoxX
                 Return
             Else
 
-                ' Si se ingreso un numero
+                ' If a number is entered
                 If IsNumeric(e.KeyChar) Then
-                    ' y la coma no ha sido ingresada
+                    ' and the comma is not entered
                     If commaEntered = False Then
-                        ' en el caso que sea el primer digito de los enteros
+                        ' and it's the first digit
                         If strCurrencyInt.Length = 1 And strCurrencyInt = "0" Then
-                            ' Agregar solo un digito
+                            ' Add only one digit
                             strCurrencyInt = e.KeyChar
                         Else
-                            ' Si no, agregar el numero al final de los enteros
+                            ' else, put the char at the end of the string
                             strCurrencyInt = strCurrencyInt & e.KeyChar
                         End If
                     Else
-                        ' Ya se introdujo la coma
+                        ' The comma is entered
                         If boolCurrencyDecFirstPos Then
                             strCurrencyDec = e.KeyChar & strCurrencyDec.Substring(1, 1)
                             boolCurrencyDecFirstPos = False
@@ -262,7 +261,7 @@ Public Class TextBoxX
                     End If
                 Else
 
-                    ' Lo unica tecla que puede llegar aqui es la coma
+                    ' The only key accepted here is the comma
                     If e.KeyChar = "," Then
                         commaEntered = True
                     End If
@@ -278,7 +277,6 @@ Public Class TextBoxX
         If _MoneyField Then
             If Text.StartsWith("$ ") Then
                 Text = Text.Replace("$ ", "")
-                Me.SelectAll()
             End If
         End If
     End Sub
@@ -287,5 +285,9 @@ Public Class TextBoxX
         If _MoneyField And Not Text.Length = 0 Then
             Text = String.Format("{0:C2}", CDec(Text))
         End If
+    End Sub
+
+    Private Sub TextBoxX_MouseUp(sender As Object, e As MouseEventArgs) Handles Me.MouseUp
+        SelectAll()
     End Sub
 End Class

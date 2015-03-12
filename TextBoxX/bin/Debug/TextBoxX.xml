@@ -26,6 +26,12 @@ TextBoxX
 	<value></value>
 	<returns></returns>
 	<remarks></remarks>
+</member><member name="M:TextBoxX.TextBoxX.GetMoneyValue">
+	<summary>
+ Devuelve la cadena para ser convertida en decimal cuando se ingresa el campo de moneda
+ </summary>
+	<returns></returns>
+	<remarks></remarks>
 </member>
 </members>
 </doc>
