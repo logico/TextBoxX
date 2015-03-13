@@ -10,6 +10,8 @@ Imports System.Text.RegularExpressions
 Public Class TextBoxX
     Inherits System.Windows.Forms.TextBox
 
+    Private allSelected As Boolean = True
+
     Private strCurrency As String = ""
 
     Private strCurrencyInt As String = "0"
@@ -26,7 +28,11 @@ Public Class TextBoxX
     Public Declare Function GetWindowDC Lib "user32" Alias "GetWindowDC" (ByVal hwnd As Integer) As Integer
 
     '--Border color
-    Private _borderColor As Color = Color.Black
+    Private _borderColor As Color = Color.Gray
+
+    '-- Color border before set an error
+    Private _originalBorder As Color
+
     Private Const WM_PAINT As Integer = 15
 
     '--Regular expression string
@@ -35,8 +41,51 @@ Public Class TextBoxX
     '--Cue banner text
     Private _cuebanner As String = "Watermark"
 
+
+    Private _ErrorIcon As System.Drawing.Icon
+    Public Property ErrorIcon As System.Drawing.Icon
+        Get
+            Return _ErrorIcon
+        End Get
+        Set(value As System.Drawing.Icon)
+            _ErrorIcon = value
+            Me.err.Icon = _ErrorIcon
+        End Set
+    End Property
+
+    Private _ErrorIconPosition As ErrorIconAlignment = ErrorIconAlignment.MiddleRight
+    Public Property ErrorIconPosition As ErrorIconAlignment
+        Get
+            Return _ErrorIconPosition
+        End Get
+        Set(value As ErrorIconAlignment)
+            _ErrorIconPosition = value
+            Me.err.SetIconAlignment(Me, _ErrorIconPosition)
+        End Set
+    End Property
+
+    Private _ErrorIconPadding As Integer = 7
+    Public Property ErrorIconPadding As Integer
+        Get
+            Return _ErrorIconPadding
+        End Get
+        Set(value As Integer)
+            _ErrorIconPadding = value
+            Me.err.SetIconPadding(Me, _ErrorIconPadding)
+        End Set
+    End Property
+
+    ' --Error message on invalid
+    Public Property ErrorMessageEmptyField As String = "Este campo no puede estar vacío"
+
+    Public Property ErrorMessageRegexFail As String = "El formato no es correcto"
+
+
+
     '--Only Numbers
     Private _onlyNumbers As Boolean = False
+    Friend WithEvents err As System.Windows.Forms.ErrorProvider
+    Private components As System.ComponentModel.IContainer
 
     Private _MoneyField As Boolean = False
 
@@ -107,25 +156,50 @@ Public Class TextBoxX
     Public Function IsValid() As Boolean
 
         ' Devuelve true porque se analiza un campo que no es necesario
-        If _IsRequired = False Then Return True
+        If _IsRequired = False Then
+            Me.BorderColor = _originalBorder
+            Return True
+        End If
+
 
         ' Si es requerido Y no tiene texto = fallo
-        If (_IsRequired = True) And (Me.Text.Length = 0) Then Return False
+        If (_IsRequired = True) And (Me.Text.Length = 0) Then
+            Me.err.SetError(Me, ErrorMessageEmptyField)
+            Me.BorderColor = Color.Red
+            Return False
+        Else
+            Me.BorderColor = _originalBorder
+            Me.err.SetError(Me, vbNullString)
+            Return True
+        End If
+
 
         ' If required and acept any string and the text is not empty = aprobed
-        If (_IsRequired) And (Me._regexString = "*") And (Me.Text.Length <> 0) Then Return True
-
+        If (_IsRequired) And (Me._regexString = "*") And (Me.Text.Length <> 0) Then
+            Me.BorderColor = _originalBorder
+            Me.err.SetError(Me, vbNullString)
+            Return True
+        End If
 
         If (Me.IsRequired) And (Me._regexString.Length <> 0) And (Me.Text.Length <> 0) Then     'If the regex string and the content of the text box are not empty
 
             Dim regexObj As Regex = New Regex(_regexString)
             Dim match As Match = regexObj.Match(Me.Text)
 
-            Debug.Print(Name)
-            Return match.Success                                        'Return if match
+            If match.Success Then
+                Me.BorderColor = _originalBorder
+                Me.err.SetError(Me, vbNullString)
+                Return True
+            Else
+                Me.err.SetError(Me, ErrorMessageRegexFail)
+                Me.BorderColor = Color.Red
+                Return False
+            End If
 
         Else
             Debug.Print(Name)
+            Me.err.SetError(Me, ErrorMessageEmptyField)
+            Me.BorderColor = Color.Red
             Return False
         End If
     End Function
@@ -201,8 +275,10 @@ Public Class TextBoxX
             OrElse e.KeyCode = Keys.Oemcomma Then
 
             acceptableKey = True
-            If e.KeyCode = 46 And _MoneyField Then
+
+            If (e.KeyCode = 46 And _MoneyField) Or (_MoneyField And allSelected) Then
                 Me.Clear()
+                allSelected = False
                 commaEntered = False
                 strCurrencyInt = "0"
                 strCurrencyDec = "00"
@@ -275,6 +351,7 @@ Public Class TextBoxX
 
     Private Sub TextBoxX_GotFocus(sender As Object, e As EventArgs) Handles Me.GotFocus
         If _MoneyField Then
+            allSelected = True
             If Text.StartsWith("$ ") Then
                 Text = Text.Replace("$ ", "")
             End If
@@ -289,5 +366,37 @@ Public Class TextBoxX
 
     Private Sub TextBoxX_MouseUp(sender As Object, e As MouseEventArgs) Handles Me.MouseUp
         SelectAll()
+        allSelected = True
+    End Sub
+
+    Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
+        Me.err = New System.Windows.Forms.ErrorProvider(Me.components)
+        CType(Me.err, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.SuspendLayout()
+        CType(Me.err, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.ResumeLayout(False)
+
+        Me.err.SetIconPadding(Me, _ErrorIconPadding)
+        Me.err.SetIconAlignment(Me, _ErrorIconPosition)
+        _ErrorIcon = Me.err.Icon
+        Me.err.BlinkStyle = ErrorBlinkStyle.NeverBlink
+
+        _originalBorder = Me.BorderColor
+    End Sub
+
+    Public Sub New()
+        MyBase.New()
+        InitializeComponent()
+    End Sub
+
+    ''' <summary>
+    ''' Limpia el error del control
+    ''' </summary>
+    ''' <remarks></remarks>
+    Public Sub ClearError()
+        Me.err.SetError(Me, vbNullString)
+        Me.BorderColor = _originalBorder
+        commaEntered = False
     End Sub
 End Class

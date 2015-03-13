@@ -18,6 +18,7 @@ C:\Users\Alejandro\Google Drive\Dev\TextBoxX\TextBoxX\bin\Release\TextBoxX.dll
 C:\Users\Alejandro\Google Drive\Dev\TextBoxX\TextBoxX\bin\Release\TextBoxX.pdb
 C:\Users\Alejandro\Google Drive\Dev\TextBoxX\TextBoxX\bin\Release\TextBoxX.xml
 C:\Users\Alejandro\Google Drive\Dev\TextBoxX\TextBoxX\obj\Release\TextBoxX.Resources.resources
+C:\Users\Alejandro\Google Drive\Dev\TextBoxX\TextBoxX\obj\Release\TextBoxX.TextBoxX.resources
 C:\Users\Alejandro\Google Drive\Dev\TextBoxX\TextBoxX\obj\Release\TextBoxX.vbproj.GenerateResource.Cache
 C:\Users\Alejandro\Google Drive\Dev\TextBoxX\TextBoxX\obj\Release\TextBoxX.dll
 C:\Users\Alejandro\Google Drive\Dev\TextBoxX\TextBoxX\obj\Release\TextBoxX.xml

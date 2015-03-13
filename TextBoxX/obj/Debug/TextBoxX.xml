@@ -32,6 +32,11 @@ TextBoxX
  </summary>
 	<returns></returns>
 	<remarks></remarks>
+</member><member name="M:TextBoxX.TextBoxX.ClearError">
+	<summary>
+ Limpia el error del control
+ </summary>
+	<remarks></remarks>
 </member>
 </members>
 </doc>
