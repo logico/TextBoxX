@@ -6,37 +6,42 @@ TextBoxX
 </name>
 </assembly>
 <members>
+<member name="T:TextBoxX.My.Resources.Resources">
+<summary>
+  A strongly-typed resource class, for looking up localized strings, etc.
+</summary>
+</member>
 <member name="P:TextBoxX.My.Resources.Resources.ResourceManager">
-	<summary>
+<summary>
   Returns the cached ResourceManager instance used by this class.
 </summary>
-</member><member name="P:TextBoxX.My.Resources.Resources.Culture">
-	<summary>
+</member>
+<member name="P:TextBoxX.My.Resources.Resources.Culture">
+<summary>
   Overrides the current thread's CurrentUICulture property for all
   resource lookups using this strongly typed resource class.
 </summary>
-</member><member name="T:TextBoxX.My.Resources.Resources">
-	<summary>
-  A strongly-typed resource class, for looking up localized strings, etc.
-</summary>
-</member><member name="P:TextBoxX.TextBoxX.IsRequired">
-	<summary>
+</member>
+<member name="P:TextBoxX.TextBoxX.IsRequired">
+ <summary>
  Flag indicating if the field is requiered
  </summary>
-	<value></value>
-	<returns></returns>
-	<remarks></remarks>
-</member><member name="M:TextBoxX.TextBoxX.GetMoneyValue">
-	<summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="M:TextBoxX.TextBoxX.GetMoneyValue">
+ <summary>
  Devuelve la cadena para ser convertida en decimal cuando se ingresa el campo de moneda
  </summary>
-	<returns></returns>
-	<remarks></remarks>
-</member><member name="M:TextBoxX.TextBoxX.ClearError">
-	<summary>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="M:TextBoxX.TextBoxX.ClearError">
+ <summary>
  Limpia el error del control
  </summary>
-	<remarks></remarks>
+ <remarks></remarks>
 </member>
 </members>
 </doc>

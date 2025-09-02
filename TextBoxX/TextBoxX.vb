@@ -27,6 +27,8 @@ Public Class TextBoxX
 
     Public Declare Function GetWindowDC Lib "user32" Alias "GetWindowDC" (ByVal hwnd As Integer) As Integer
 
+
+
     '--Border color
     Private _borderColor As Color = Color.Gray
 
@@ -43,6 +45,17 @@ Public Class TextBoxX
 
 
     Private _ErrorIcon As System.Drawing.Icon
+
+
+    Public Property SelectOnClick As Boolean = True
+
+    Public Property AutoScrollBar As Boolean = False
+
+    Public Sub SetError(ByVal message As String)
+
+    End Sub
+
+
     Public Property ErrorIcon As System.Drawing.Icon
         Get
             Return _ErrorIcon

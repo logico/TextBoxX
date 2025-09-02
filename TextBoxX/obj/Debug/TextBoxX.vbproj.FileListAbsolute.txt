@@ -31,3 +31,14 @@ C:\Users\Alejandro\Google Drive\Dev\TextBoxX\TextBoxX\obj\Debug\TextBoxX.vbproj.
 C:\Users\Alejandro\Google Drive\Dev\TextBoxX\TextBoxX\obj\Debug\TextBoxX.dll
 C:\Users\Alejandro\Google Drive\Dev\TextBoxX\TextBoxX\obj\Debug\TextBoxX.xml
 C:\Users\Alejandro\Google Drive\Dev\TextBoxX\TextBoxX\obj\Debug\TextBoxX.pdb
+C:\Users\logico\Documents\GitHub\TextBoxX\TextBoxX\bin\Debug\TextBoxX.dll
+C:\Users\logico\Documents\GitHub\TextBoxX\TextBoxX\bin\Debug\TextBoxX.pdb
+C:\Users\logico\Documents\GitHub\TextBoxX\TextBoxX\bin\Debug\TextBoxX.xml
+C:\Users\logico\Documents\GitHub\TextBoxX\TextBoxX\obj\Debug\TextBoxX.vbproj.AssemblyReference.cache
+C:\Users\logico\Documents\GitHub\TextBoxX\TextBoxX\obj\Debug\TextBoxX.Resources.resources
+C:\Users\logico\Documents\GitHub\TextBoxX\TextBoxX\obj\Debug\TextBoxX.TextBoxX.resources
+C:\Users\logico\Documents\GitHub\TextBoxX\TextBoxX\obj\Debug\TextBoxX.vbproj.GenerateResource.cache
+C:\Users\logico\Documents\GitHub\TextBoxX\TextBoxX\obj\Debug\TextBoxX.vbproj.CoreCompileInputs.cache
+C:\Users\logico\Documents\GitHub\TextBoxX\TextBoxX\obj\Debug\TextBoxX.dll
+C:\Users\logico\Documents\GitHub\TextBoxX\TextBoxX\obj\Debug\TextBoxX.xml
+C:\Users\logico\Documents\GitHub\TextBoxX\TextBoxX\obj\Debug\TextBoxX.pdb
